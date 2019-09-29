@@ -138,6 +138,61 @@ class Hero:
 
           print("Draw!!")
 
+class Weapon(Ability):
+
+    def attack(self):
+        """  This method returns a random value
+        between one half to the full attack power of the weapon.
+        """
+        # TODO: Use what you learned to complete this method.
+        half_amount = self.max_damage//2
+        return random.randint(half_amount, int(self.max_damage))
+
+
+
+class Team:
+    def __init__(self, name):
+        ''' Initialize your team with its team name
+        '''
+        # TODO: Implement this constructor by assigning the name and heroes, which should be an empty list
+        self.name = name
+        self.heroes = []
+
+    def remove_hero(self, name):
+        '''Remove hero from heroes list.
+        If Hero isn't found return 0.
+        '''
+        # TODO: Implement this method to remove the hero from the list given their name.
+        name_in_list = False
+        for hero in self.heroes:
+
+                if hero.name == name:
+
+                    name_in_list = True
+                    self.heroes.remove(hero)
+
+        if name_in_list == False:
+
+            return 0
+
+
+    def view_all_heroes(self):
+        '''Prints out all heroes to the console.'''
+        # TODO: Loop over the list of heroes and print their names to the terminal.
+        for hero in self.heroes:
+
+            print(hero.name)
+
+    def add_hero(self, hero):
+      '''Add Hero object to self.heroes.'''
+      # TODO: Add the Hero object that is passed in to the list of heroes in
+      # self.heroes
+      self.heroes.append(hero)
+
+
+
+
+
 
 
 
