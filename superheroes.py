@@ -354,14 +354,17 @@ class Arena:
 
         ability_decision = input("Would you like to add an ability for your character? y/n? ")
 
+
         while ability_decision != "y" and ability_decision != "n":
 
             print("wrong letter!!")
             ability_decision = input("Enter a letter again: ")
 
         if ability_decision == "y":
-
-            hero.add_ability(self.create_ability())
+            count  = input("How many abilities do you want your hero to have?")
+            while count > 0:
+                hero.add_ability(self.create_ability())
+                count -= 1
 
         weapon_decision = input("Would you like to add a weapon for your hero? y/n? ")
 
@@ -371,8 +374,10 @@ class Arena:
             weapon_decision = input("Enter a letter again: ")
 
         if weapon_decision == "y":
-
-            hero.add_weapon(self.create_weapon())
+            count  = input("How many abilities do you want your hero to have?")
+            while count > 0:
+                hero.add_weapon(self.create_weapon())
+                count -= 1
 
         armor_decision = input("Would you like to add armor for your hero? ")
 
@@ -382,9 +387,10 @@ class Arena:
             armor_decision = input("Enter a letter again: ")
 
         if armor_decision == "y":
-
-            hero.add_armor(self.create_armor())
-
+            count  = input("How many abilities do you want your hero to have?")
+            while  count > 0:
+                hero.add_armor(self.create_armor())
+                count -= 1 
         return hero
 
     def build_team_one(self):
