@@ -289,6 +289,13 @@ class Team:
 
 
 class Arena:
+    def __init__(self):
+        '''Instantiate properties
+            team_one: None
+            team_two: None
+        '''
+        self.team_one = None
+        self.team_two = None
 
     def create_ability(self):
         '''Prompt for Ability information.
@@ -404,7 +411,7 @@ class Arena:
         #
         # Add the created hero to team two.
         num_of_heroes = input("Enter a number from 3 to 20 for the number of heroes you want in team 2: ")
-        name = input("choose a name for team 1: ")
+        name = input("choose a name for team 2: ")
         self.team_two = Team(name)
 
         for i in range(int(num_of_heroes)):
@@ -428,11 +435,27 @@ class Arena:
         #     Declare winning team
         #     Show both teams average kill/death ratio.
         #     Show surviving heroes.
-        if len(self.team_one.heroes)>len(self.team_two.heroes):
+
+        survivors_one = []
+        survivors_two = []
+
+        for hero in self.team_one.heroes:
+
+            if hero.is_alive():
+
+                survivors_one.append(hero)
+
+        for hero in self.team_two.heroes:
+
+            if hero.is_alive():
+
+                survivors_two.append(hero)
+
+        if len(survivors_one)>len(survivors_two):
 
             print(self.team_one.name + " has won!")
 
-        elif len(self.team_one.heroes) == len(self.team_two.heroes):
+        elif len(survivors_one) == len(survivors_two):
 
             print("It's a draw!")
 
@@ -462,20 +485,27 @@ class Arena:
 
 
 
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
+    game_is_running = True
 
-    # If you run this file from the terminal
-    # this block of code is executed.
+    # Instantiate Game Arena
     arena = Arena()
+
+    #Build Teams
     arena.build_team_one()
     arena.build_team_two()
-    arena.team_battle()
-    arena.show_stats()
+
+    while game_is_running:
+
+        arena.team_battle()
+        arena.show_stats()
+        play_again = input("Play Again? Y or N: ")
+
+        #Check for Player Input
+        if play_again.lower() == "n":
+            game_is_running = False
+
+        else:
+            #Revive heroes to play again
+            arena.team_one.revive_heroes()
+            arena.team_two.revive_heroes()
