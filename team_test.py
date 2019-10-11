@@ -224,7 +224,7 @@ def create_set():
 def test_armor():
     armor = superheroes.Hero("The Ring", 200)
     for _ in range(0, 500):
-        defense = armor.defend()
+        defense = armor.defend(armor.attack())
         assert (defense <= 200 and defense >= 0)
 
 
